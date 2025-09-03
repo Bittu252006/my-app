@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+/* Reset and basic styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  height: 100vh;
+
+  /* Background image */
+  background: url("c:\Users\user\Downloads\bgimage.png") no-repeat center center fixed;
+  background-size: cover;
+
+  /* Center content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+/* Container to center the form */
+.container {
+  width: 600px;
+  height: 700px;  
+  max-width: 700px;
+  padding: 20px;
+  padding-top: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Form card */
+.form-container {
+  width: 400px;        
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  /* Center content inside the square */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Toggle buttons (Sign In / Sign Up) */
+.form-toggle {
+  display: flex;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ddd;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-toggle button {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  background-color: #f3f3f3;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
 }
+
+.form-toggle button:hover {
+  background-color: #e0e0e0;
+}
+
+.form-toggle .active {
+  background-color: #033452;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Form fields */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #033452;
+}
+
+.form input {
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form button {
+  padding: 12px;
+  background-color: #033452;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.form button:hover {
+  background-color: #05507a;
+}
+
+/* Links inside form */
+.form a {
+  color: #004085;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.form p {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 15px;
+} 
