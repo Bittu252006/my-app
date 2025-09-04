@@ -3,16 +3,16 @@ import React, { useState } from "react";
 export default function AuthForm() {
   const [isSignIn, setIsSignIn] = useState(true);
   const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-    email: "",
-    password: "",
-    phone_no: "",
-    gender: "",
-    role: "",
+    Name: "",
+    Age: "",
+    Email: "",
+    Password: "",
+    PhoneNo: "",
+    Gender: "",
+    Role: "",
   });
 
-  const handleChange = (e) => {
+    const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -41,8 +41,8 @@ export default function AuthForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
+          Email: formData.Email,
+          Password: formData.Password,
         }),
       });
       const data = await res.json();
@@ -78,17 +78,17 @@ export default function AuthForm() {
             <h2>Sign In</h2>
             <input
               type="email"
-              name="email"
+              name="Email"
               placeholder="Email"
-              value={formData.email}
+              value={formData.Email}
               onChange={handleChange}
               required
             />
             <input
               type="password"
-              name="password"
+              name="Password"
               placeholder="Password"
-              value={formData.password}
+              value={formData.Password}
               onChange={handleChange}
               required
             />
@@ -109,47 +109,47 @@ export default function AuthForm() {
             <h2>Sign Up</h2>
             <input
               type="text"
-              name="name"
+              name="Name"
               placeholder="Full Name"
-              value={formData.name}
+              value={formData.Name}
               onChange={handleChange}
               required
             />
             <input
-              type="text"
-              name="age"
+              type="number"
+              name="Age"
               placeholder="Age"
-              value={formData.age}
+              value={formData.Age}
               onChange={handleChange}
             />
             <input
               type="email"
-              name="email"
+              name="Email"
               placeholder="Email"
-              value={formData.email}
+              value={formData.Email}
               onChange={handleChange}
               required
             />
             <input
               type="password"
-              name="password"
+              name="Password"
               placeholder="Password"
-              value={formData.password}
+              value={formData.Password}
               onChange={handleChange}
               required
             />
             <input
               type="tel"
-              name="phone_no"
+              name="PhoneNo"
               placeholder="Phone Number"
-              value={formData.phone_no}
+              value={formData.PhoneNo}
               onChange={handleChange}
             />
             <input
               type="text"
-              name="role"
+              name="Role"
               placeholder="Role"
-              value={formData.role}
+              value={formData.Role}
               onChange={handleChange}
             />
             <div className="gender">
@@ -158,9 +158,9 @@ export default function AuthForm() {
                 <label>
                   <input
                     type="radio"
-                    name="gender"
+                    name="Gender"
                     value="male"
-                    checked={formData.gender === "male"}
+                    checked={formData.Gender === "male"}
                     onChange={handleChange}
                   />{" "}
                   Male
@@ -168,9 +168,9 @@ export default function AuthForm() {
                 <label>
                   <input
                     type="radio"
-                    name="gender"
+                    name="Gender"
                     value="female"
-                    checked={formData.gender === "female"}
+                    checked={formData.Gender === "female"}
                     onChange={handleChange}
                   />{" "}
                   Female
@@ -178,9 +178,9 @@ export default function AuthForm() {
                 <label>
                   <input
                     type="radio"
-                    name="gender"
+                    name="Gender"
                     value="other"
-                    checked={formData.gender === "other"}
+                    checked={formData.Gender === "other"}
                     onChange={handleChange}
                   />{" "}
                   Other
