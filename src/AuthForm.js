@@ -1,18 +1,23 @@
+// ✅ Always at the very top
 import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // ✅ Correct hook
 
 export default function AuthForm() {
+  const navigate = useNavigate(); // ✅ FIXED
   const [isSignIn, setIsSignIn] = useState(true);
   const [formData, setFormData] = useState({
     Name: "",
     Age: "",
     Email: "",
-    Password: "",
+    Password: "", // ✅ Capital P (consistent)
     PhoneNo: "",
     Gender: "",
     Role: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
-    const handleChange = (e) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -27,7 +32,7 @@ export default function AuthForm() {
       const data = await res.json();
       console.log("Signup response:", data);
       alert("Sign Up Successful!");
-      setIsSignIn(true); // Switch to Sign In after signup
+      setIsSignIn(true);
     } catch (err) {
       console.error(err);
       alert("Sign Up Failed!");
@@ -47,8 +52,13 @@ export default function AuthForm() {
       });
       const data = await res.json();
       console.log("Signin response:", data);
-      if (data.user) alert(`Welcome ${data.user.name}`);
-      else alert("Invalid credentials");
+
+      if (res.ok && data.user) {
+        alert(`Welcome ${data.user.name}`);
+        navigate("/dashboard"); // ✅ Correct redirect
+      } else {
+        alert("Invalid credentials");
+      }
     } catch (err) {
       console.error(err);
       alert("Sign In Failed!");
@@ -84,25 +94,33 @@ export default function AuthForm() {
               onChange={handleChange}
               required
             />
-            <input
-              type="password"
-              name="Password"
-              placeholder="Password"
-              value={formData.Password}
-              onChange={handleChange}
-              required
-            />
-            <a href="#">Forgot Password?</a>
-            <button type="submit">Sign In</button>
-            <p>
-              Don’t have an account?{" "}
+
+            {/* 🔑 Password field with show/hide */}
+            <div style={{ position: "relative", marginBottom: "10px" }}>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="Password" // ✅ FIXED (capital P)
+                placeholder="Enter Password"
+                value={formData.Password}
+                onChange={handleChange}
+                required
+                style={{ width: "100%", paddingRight: "35px" }}
+              />
               <span
-                style={{ color: "#033452", cursor: "pointer" }}
-                onClick={() => setIsSignIn(false)}
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: "absolute",
+                  right: "10px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  cursor: "pointer",
+                }}
               >
-                Sign Up
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
-            </p>
+            </div>
+
+            <button type="submit">Sign In</button>
           </form>
         ) : (
           <form className="form" onSubmit={handleSignUp}>
@@ -130,14 +148,30 @@ export default function AuthForm() {
               onChange={handleChange}
               required
             />
-            <input
-              type="password"
-              name="Password"
-              placeholder="Password"
-              value={formData.Password}
-              onChange={handleChange}
-              required
-            />
+
+           <div style={{ position: "relative", marginBottom: "10px" }}>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="Password" // ✅ FIXED (capital P)
+                placeholder="Enter Password"
+                value={formData.Password}
+                onChange={handleChange}
+                required
+                style={{ width: "100%", paddingRight: "35px" }}
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: "absolute",
+                  right: "10px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  cursor: "pointer",
+                }}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
             <input
               type="tel"
               name="PhoneNo"
@@ -145,15 +179,20 @@ export default function AuthForm() {
               value={formData.PhoneNo}
               onChange={handleChange}
             />
-            <input
-              type="text"
+             <select
               name="Role"
-              placeholder="Role"
               value={formData.Role}
               onChange={handleChange}
-            />
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            >
+              <option value="">-- Select a Role --</option>
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+              <option value="moderator">Moderator</option>
+            </select>
+
             <div className="gender">
-              <label className="text-gray-700 font-medium">Gender</label>
+              <label>Gender</label>
               <div className="flex gap-6">
                 <label>
                   <input
@@ -188,15 +227,6 @@ export default function AuthForm() {
               </div>
             </div>
             <button type="submit">Sign Up</button>
-            <p>
-              Already have an account?{" "}
-              <span
-                style={{ color: "#033452", cursor: "pointer" }}
-                onClick={() => setIsSignIn(true)}
-              >
-                Sign In
-              </span>
-            </p>
           </form>
         )}
       </div>

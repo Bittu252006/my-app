@@ -3,25 +3,19 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   height: 100vh;
-
-  /* Background image */
-  background: url("c:\Users\user\Downloads\bgimage.png") no-repeat center center fixed;
+  background-color: #f5f5f5;
+  /* If you want background image uncomment below */
+  /* background: url("https://png.pngtree.com/thumb_back/fh260/background/20210205/pngtree-flat-business-login-box-login-page-image_544861.jpg") no-repeat center center fixed; */
   background-size: cover;
-
-  /* Center content */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-
-/* Container to center the form */
+/* Container only for login/signup form */
 .container {
   width: 600px;
-  height: 700px;  
+  height: auto;
   max-width: 700px;
+  margin: 50px auto; /* ✅ Center form without flex in body */
   padding: 20px;
-  padding-top: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,14 +23,14 @@ body {
 
 /* Form card */
 .form-container {
-  width: 400px;        
+  width: 100%;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background: white;
+  background: rgb(214, 246, 255);
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-  /* Center content inside the square */
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -119,4 +113,15 @@ body {
   text-align: center;
   font-size: 14px;
   margin-top: 15px;
-} 
+}
+
+/* Dropdown */
+.dropdown-content {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #ccc;
+  border-radius: 6px;
+  margin-top: 5px;
+}
